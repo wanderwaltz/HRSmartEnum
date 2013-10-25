@@ -147,7 +147,7 @@
 /* ============================================================ Private Methods ========================================================= */
 - (int)indexOfParameter:(NSString*)name
 {
-    int parameterIndex = NSUIntegerMax;
+    int parameterIndex = INT32_MAX;
     for (int i = 0; i < (int)[_parameterNames count]; i++)
     {
         NSString* parameterName = [_parameterNames objectAtIndex:i];
