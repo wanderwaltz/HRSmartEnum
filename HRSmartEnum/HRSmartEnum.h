@@ -397,7 +397,7 @@ metamacro_concat(HR_ENUM_NAME_FOR_VALUE_ELEMENT_, metamacro_is_even(Index))(Inde
                                                                                                                                     \
 static id hr_enum ## CLASS ##_method_nameForValue_implementation(id SELF, SEL CMD, ...)                                             \
 {                                                                                                                                   \
-    return [[SELF class] descriptionForValue];                                                                                             \
+    return [[SELF class] descriptionForValue];                                                                                      \
 }                                                                                                                                   \
                                                                                                                                     \
 static id hr_enum ## CLASS ##_classmethod_nameForValue_implementation(id SELF, SEL CMD, ...)                                        \
