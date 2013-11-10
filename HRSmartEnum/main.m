@@ -10,7 +10,6 @@
 #import <Foundation/Foundation.h>
 #import "HRSmartEnum.h"
 
-
 // Using HR_ENUM macro you declare both a plain C enum with the given name
 // and a class of the same name which allows more high-level operations with
 // the enum values (such as enumeration in a for-in loop for example).
@@ -37,14 +36,33 @@
          Value6,,
          Value7,,
          Value8,,
-         Value9,
-         // No more than 10 different values can be handled here,
+         Value9,,
+         Value10,,
+         Value11,,
+         Value12,,
+         Value13,,
+         Value14,,
+         Value15,,
+         Value16,,
+         Value17,,
+         Value18,,
+         Value19,,
+         Value20,,
+         Value21,,
+         Value22,,
+         Value23,,
+         Value24,,
+         Value25,
+         // No more than 50 different values can be handled here,
          // this is a limitation of metamacro_foreach and similar macros
-         // from the extobjc library. Theoretically we could expand this
-         // to any reasonable number of arguments if necessary.
+         // from the extobjc library.
          //
          // In fact, extobjc limits us to 20 values, but we have mandatory
-         // parameter pairs here, so we are left with 10 maximum for now.
+         // parameter pairs here, so this would be a limit of 10.
+         //
+         // But we've programmatically generated an expanded list of macros
+         // which upped the limit of parameters to 100 which is 50 in our
+         // case since all of the parameters come in doubles.
          );
 
 
@@ -85,14 +103,17 @@ int main(int argc, const char * argv[])
         // The constants have values starting from 0 and so forth
         NSLog(@"MahBoiValue0 = %ld", MahBoiValue0);
         NSLog(@"MahBoiValue1 = %ld", MahBoiValue1);
+        NSLog(@"MahBoiValue2 = %ld", MahBoiValue2);
         
         // They can be accessed as class methods of the enum class
         NSLog(@"MahBoi.Value0 = %ld", MahBoi.Value0);
         NSLog(@"MahBoi.Value1 = %ld", MahBoi.Value1);
+        NSLog(@"MahBoi.Value2 = %ld", MahBoi.Value2);
         
         // And also as readonly properties of the enum class instance
         NSLog(@"boi.Value0 = %ld", boi.Value0);
         NSLog(@"boi.Value1 = %ld", boi.Value1);
+        NSLog(@"boi.Value2 = %ld", boi.Value2);
         
         // All key-value pairs are accessible as a single dictionary
         // if you want.

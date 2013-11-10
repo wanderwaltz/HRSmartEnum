@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import "metamacros.h"
+#import "metamacro_extra_foreach_cxt.h"
 
 
 #pragma mark -
@@ -59,8 +60,11 @@
 //
 //
 // Please note that current limitations of the metamacro_foreach_cxt macros from extobjc library
-// allow only 10 different values to be handled by HR_ENUM macro. This could be expanded by updating
-// the extobjc library if needed.
+// allow only 50 different values to be handled by HR_ENUM macro.
+// (extobjc provides support only for 20 arguments which becomes 10 in our case since all arguments
+//  come in pairs - constant name and description. So we've expanded extobjc's set of metamacros to
+//  support wider array of argument counts, see metamacro_extra_foreach_cxt.h for more information)
+//
 //
 // Also note that MyEnum class in the example above is only declared by using HR_ENUM macro and should be
 // defined in one of the .m files in the application. This can be done using SYNTHESIZE_HR_ENUM macro which
@@ -232,7 +236,7 @@ static void hr_enum_construct_ ## CLASS ##_properties(void)                     
                                                                                                                     \
 static NSInteger hr_enum ## CLASS ##_classmethod ## Name ##_implementation(id SELF, SEL CMD, ...)                   \
 {                                                                                                                   \
-    return Index;                                                                                                   \
+    return Index/2;                                                                                                   \
 }                                                                                                                   \
                                                                                                                     \
 __attribute__((unused))                                                                                             \

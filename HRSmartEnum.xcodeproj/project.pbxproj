@@ -61,6 +61,7 @@
 		5DCDF4E7182F7EEA00B57504 /* NSMethodSignature+EXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+EXT.h"; sourceTree = "<group>"; };
 		5DCDF4E8182F7EEA00B57504 /* NSMethodSignature+EXT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMethodSignature+EXT.m"; sourceTree = "<group>"; };
 		5DCDF4F2182F836300B57504 /* HRSmartEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRSmartEnum.h; sourceTree = "<group>"; };
+		5DCDF4F7182FCE7800B57504 /* metamacro_extra_foreach_cxt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = metamacro_extra_foreach_cxt.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +105,7 @@
 		5DCDF4C5182F7E7D00B57504 /* HRSmartEnum */ = {
 			isa = PBXGroup;
 			children = (
+				5DCDF4F7182FCE7800B57504 /* metamacro_extra_foreach_cxt.h */,
 				5DCDF4F2182F836300B57504 /* HRSmartEnum.h */,
 				5DCDF4C6182F7E7D00B57504 /* main.m */,
 				5DCDF4C8182F7E7D00B57504 /* Supporting Files */,
@@ -321,6 +323,7 @@
 				5DCDF4D0182F7E7D00B57504 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
