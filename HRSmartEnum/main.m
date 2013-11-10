@@ -18,35 +18,33 @@
 // Enum is declared with NSInteger type. Current limitations allow only
 // enums without explicit values (i.e. the values are assigned automatically,
 // starting from 0 and so forth).
-@HR_ENUM(MahBoi,        // First parameter is the name of the enum
+@HR_ENUM(MahBoi, // First parameter is the name of the enum
          
-         Value0,        // The rest are values
-         Value1,
-         Value2,
-         Value3,
-         Value4,
-         Value5,
-         Value6,
-         Value7,
-         Value8,
+         // The rest of the parameters come in pairs - one is the enum constant
+         // name which is no different from the usual enum declarations.
+         //
+         // The second is the string name for this constant which can be displayed
+         // in the user interface for example.
+         //
+         // String name may be omitted, but in order for the macro to expand properly,
+         // an extra comma (,) should be then left after the enum constant name.
+         Value0, @"String value 1",
+         Value1, @"String value 2",
+         Value2,,
+         Value3,,
+         Value4,,
+         Value5, @"And here we have another user-friendly string for example",
+         Value6,,
+         Value7,,
+         Value8,,
          Value9,
-         Value10,
-         Value11,
-         Value12,
-         Value13,
-         Value14,
-         Value15,
-         Value16,
-         Value17,
-         Value18,
-         Value19
-        // No more than 20 different values can be handled here,
-        // this is a limitation of metamacro_foreach and similar macros
-        // from the extobjc library. Theoretically we could expand this
-        // to any reasonable number of arguments if necessary (if using
-        // automatic tools for code generation then even thousands of
-        // different values are possible, but do we really need this
-        // much?)
+         // No more than 10 different values can be handled here,
+         // this is a limitation of metamacro_foreach and similar macros
+         // from the extobjc library. Theoretically we could expand this
+         // to any reasonable number of arguments if necessary.
+         //
+         // In fact, extobjc limits us to 20 values, but we have mandatory
+         // parameter pairs here, so we are left with 10 maximum for now.
          );
 
 
@@ -107,7 +105,13 @@ int main(int argc, const char * argv[])
         
         // And all values too!
         NSLog(@"MahBoi.allValues = %@", MahBoi.allValues);
-        NSLog(@"boi.allValues = %@", boi.allValues);        
+        NSLog(@"boi.allValues = %@", boi.allValues);
+        
+        
+        // A dictionary which maps enum values into string values
+        // is also available as a class and instance methods
+        NSLog(@"MahBoi.nameForValue = %@", MahBoi.descriptionForValue);
+        NSLog(@"boi.nameForValue = %@", boi.descriptionForValue);
     }
     
     return 0;

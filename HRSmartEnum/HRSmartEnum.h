@@ -23,16 +23,22 @@
 // This macro declares both of these entities and should be used in header files with the following syntax:
 //  
 //      @HR_ENUM(MyEnum,
-//               Value1,
-//               Value2,
-//               Value3);
+//               Value1, @"String description of the Value1",
+//               Value2, @"String description of the Value2",
+//               Value3,,    // String description for Value3 is omitted, note the extra comma (,)
+//               Value4,);   // String description for Value4 is omitted, note the extra comma (,)
 //
+// String descriptions for enum values can be provided and accessed through the enum class. These strings
+// could be displayed in the user interface for example if needed. If you don't want to provide descriptions
+// for the enum constants, these strings could be omitted. But in order for the macro to expand properly,
+// parameter layout should remain the same, so you'll have to add an extra comma (,) character after an enum
+// constant without a description.
 //
 // This example generates a C enum named MyEnum_t (suffix _t is added to differentiate between the C enum
 // and corresponding class) and a class named MyEnum.
 //
-// Constants of the enum will be named MyEnumValue1, MyEnumValue2, MyEnumValue3 and will have default values
-// starting from 0 to 2.
+// Constants of the enum will be named MyEnumValue1, MyEnumValue2, MyEnumValue3, MyValue4 and will have default
+// values starting from 0 to 3.
 //
 // For each of the enum value declared the class MyEnum will have the following (take Value1 for example):
 //  * a readonly nonatomic NSInteger property named Value1 which always returns MyEnumValue1,
@@ -46,10 +52,14 @@
 //  * - (NSDictionary *) asDictionary - instance method version of the +dictionary
 //  * - (NSArray *) allKeys - instance method version of +allKeys
 //  * - (NSArray *) allValues - instance method version of +allValues
+//  * Both + and - versions of the + (NSDictionary *) descriptionForValue method which maps the enum constant
+//     values into the string descriptions which were provided in the HR_ENUM declaration.
+//      In our example calling [MyEnum descriptionForValue][@(MyEnumValue1)] would yield the string
+//        @"String description of the Value1"
 //
 //
 // Please note that current limitations of the metamacro_foreach_cxt macros from extobjc library
-// allow only 20 different values to be handled by HR_ENUM macro. This could be expanded by updating
+// allow only 10 different values to be handled by HR_ENUM macro. This could be expanded by updating
 // the extobjc library if needed.
 //
 // Also note that MyEnum class in the example above is only declared by using HR_ENUM macro and should be
@@ -71,6 +81,7 @@ metamacro_foreach_cxt(HR_ENUM_STATIC_METHOD, , Name, __VA_ARGS__)       \
 HR_ENUM_CONSTRUCT_PROPERTIES(Name, __VA_ARGS__)                         \
 HR_ENUM_CONSTRUCT_CLASSMETHODS(Name, __VA_ARGS__)                       \
 HR_ENUM_AS_DICTIONARY(Name, __VA_ARGS__)                                \
+HR_ENUM_NAME_FOR_VALUE(Name, __VA_ARGS__)                               \
                                                                         \
 typedef NS_ENUM(NSInteger, metamacro_concat(Name, _t))                  \
 {                                                                       \
@@ -97,6 +108,7 @@ implementation CLASS                                   \
         hr_enum_construct_ ## CLASS ##_classmethods(); \
         hr_enum_construct_ ## CLASS ##_properties();   \
         hr_enum_construct_ ## CLASS ##_asDictionary(); \
+        hr_enum_construct_ ## CLASS ##_nameForValue(); \
     }                                                  \
 }                                                      \
                                                        \
@@ -131,22 +143,30 @@ implementation CLASS                                   \
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Adds a property returning the proper enum element value.
+//
+// Skips every odd parameter since varargs passed to HR_ENUM contain NSString descriptions of enum constants which
+// should not go into the properties list.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define HR_ENUM_PROPERTY(Index, CLASS, Name)                                                                    \
+#define HR_ENUM_PROPERTY(Index, CLASS, Name) \
+    metamacro_concat(HR_ENUM_PROPERTY_, metamacro_is_even(Index))(Index, CLASS, Name)
+
+#define HR_ENUM_PROPERTY_0(Index, CLASS, Name)
+
+#define HR_ENUM_PROPERTY_1(Index, CLASS, Name)                                                                  \
 @interface CLASS(DynamicProperty_ ## Name)                                                                      \
 @property (readonly, nonatomic) NSInteger Name;                                                                 \
 @end                                                                                                            \
                                                                                                                 \
-static id hr_enum_ ## CLASS ##_property ## Name ##_implementation(id SELF, SEL CMD, ...)                        \
+static NSInteger hr_enum_ ## CLASS ##_property ## Name ##_implementation(id SELF, SEL CMD, ...)                 \
 {                                                                                                               \
-    return objc_msgSend([SELF class], CMD);                                                                     \
+    return (NSInteger)objc_msgSend([SELF class], CMD);                                                          \
 }                                                                                                               \
                                                                                                                 \
 __attribute__((unused))                                                                                         \
 static void hr_enum_construct_ ## CLASS ##_property_ ## Name(void)                                              \
 {                                                                                                               \
     Class theClass  = objc_getClass(# CLASS);                                                                   \
-    class_addMethod(theClass, @selector(Name), &hr_enum_ ## CLASS ##_property ## Name ##_implementation, "i@"); \
+    class_addMethod(theClass, @selector(Name), (IMP)&hr_enum_ ## CLASS ##_property ## Name ##_implementation, "i@"); \
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -160,8 +180,15 @@ static void hr_enum_construct_ ## CLASS ##_property_ ## Name(void)              
 //
 // This is a helper macro to be used in conjunction with metamacro_foreach_cxt when iterating property
 // names of the enum class.
+//
+// Skips every odd parameter since varargs passed to HR_ENUM contain NSString descriptions of enum constants which
+// should not go into the properties list.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define HR_ENUM_CONSTRUCT_PROPERTY_CALL(Index, CLASS, Name) \
+    metamacro_concat(HR_ENUM_CONSTRUCT_PROPERTY_CALL_, metamacro_is_even(Index))(Index, CLASS, Name)
+
+#define HR_ENUM_CONSTRUCT_PROPERTY_CALL_0(Index, CLASS, Name)
+#define HR_ENUM_CONSTRUCT_PROPERTY_CALL_1(Index, CLASS, Name) \
     hr_enum_construct_ ## CLASS ##_property_ ## Name();
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -189,15 +216,23 @@ static void hr_enum_construct_ ## CLASS ##_properties(void)                     
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Adds a class method returning the proper enum element value.
+//
+// Skips every odd parameter since varargs passed to HR_ENUM contain NSString descriptions of enum constants which
+// should not go into the class methods list.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define HR_ENUM_STATIC_METHOD(Index, CLASS, Name)                                                                   \
+#define HR_ENUM_STATIC_METHOD(Index, CLASS, Name) \
+    metamacro_concat(HR_ENUM_STATIC_METHOD_, metamacro_is_even(Index))(Index, CLASS, Name)
+
+#define HR_ENUM_STATIC_METHOD_0(Index, CLASS, Name)
+
+#define HR_ENUM_STATIC_METHOD_1(Index, CLASS, Name)                                                                 \
 @interface CLASS(DynamicClassMethod_ ## Name)                                                                       \
 + (NSInteger) Name;                                                                                                 \
 @end                                                                                                                \
                                                                                                                     \
-static id hr_enum ## CLASS ##_classmethod ## Name ##_implementation(id SELF, SEL CMD, ...)                          \
+static NSInteger hr_enum ## CLASS ##_classmethod ## Name ##_implementation(id SELF, SEL CMD, ...)                   \
 {                                                                                                                   \
-    return (__bridge id)(void *)Index;                                                                              \
+    return Index;                                                                                                   \
 }                                                                                                                   \
                                                                                                                     \
 __attribute__((unused))                                                                                             \
@@ -205,7 +240,7 @@ static void hr_enum_construct_ ## CLASS ##_classmethod_ ## Name(void)           
 {                                                                                                                   \
     Class theClass  = objc_getClass(# CLASS);                                                                       \
     Class metaClass = object_getClass(theClass);                                                                    \
-    class_addMethod(metaClass, @selector(Name), &hr_enum ## CLASS ##_classmethod ## Name ##_implementation, "i@");  \
+    class_addMethod(metaClass, @selector(Name), (IMP)&hr_enum ## CLASS ##_classmethod ## Name ##_implementation, "i@");  \
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -219,8 +254,15 @@ static void hr_enum_construct_ ## CLASS ##_classmethod_ ## Name(void)           
 //
 // This is a helper macro to be used in conjunction with metamacro_foreach_cxt when iterating class method
 // names of the enum class.
+//
+// Skips every odd parameter since varargs passed to HR_ENUM contain NSString descriptions of enum constants which
+// should not go into the class methods list.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define HR_ENUM_CONSTRUCT_CLASSMETHOD_CALL(Index, CLASS, Name) \
+    metamacro_concat(HR_ENUM_CONSTRUCT_CLASSMETHOD_CALL_, metamacro_is_even(Index))(Index, CLASS, Name)
+
+#define HR_ENUM_CONSTRUCT_CLASSMETHOD_CALL_0(Index, CLASS, Name)
+#define HR_ENUM_CONSTRUCT_CLASSMETHOD_CALL_1(Index, CLASS, Name) \
     hr_enum_construct_ ## CLASS ##_classmethod_ ## Name();
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -248,8 +290,15 @@ static void hr_enum_construct_ ## CLASS ##_classmethods(void)                   
 // Adds properly prefixed enum elements.
 //
 // This is a helper macro to be used in conjunction with metamacro_foreach_cxt when iterating enum constants.
+//
+// Skips every odd parameter since varargs passed to HR_ENUM contain NSString descriptions of enum constants which
+// should not go into the enum declaration.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define HR_ENUM_ENUM_ELEMENT(Index, Prefix, Name) \
+    metamacro_concat(HR_ENUM_ENUM_ELEMENT_, metamacro_is_even(Index))(Index/2, Prefix, Name)
+
+#define HR_ENUM_ENUM_ELEMENT_0(Index, Prefix, Name)
+#define HR_ENUM_ENUM_ELEMENT_1(Index, Prefix, Name) \
     metamacro_concat(Prefix, Name) = Index,
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -262,8 +311,15 @@ static void hr_enum_construct_ ## CLASS ##_classmethods(void)                   
 //
 // This is a helper macro to be used in conjunction with metamacro_foreach_cxt when iterating property
 // names of the enum class.
+//
+// Skips every odd parameter since varargs passed to HR_ENUM contain NSString descriptions of enum constants which
+// should not go into asDictionary result.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define HR_ENUM_AS_DICTIONARY_ELEMENT(Value, Name) \
+#define HR_ENUM_AS_DICTIONARY_ELEMENT(Index, Name)\
+    metamacro_concat(HR_ENUM_AS_DICTIONARY_ELEMENT_, metamacro_is_even(Index))(Index/2, Name)
+
+#define HR_ENUM_AS_DICTIONARY_ELEMENT_0(Value, Name)
+#define HR_ENUM_AS_DICTIONARY_ELEMENT_1(Value, Name) \
     @ # Name : @(Value),
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -296,6 +352,66 @@ static void hr_enum_construct_ ## CLASS ##_asDictionary(void)                   
     Class metaClass = object_getClass(theClass);                                                                                \
     class_addMethod(theClass,  @selector(asDictionary), &hr_enum ## CLASS ##_method_asDictionary_implementation,      "@@");    \
     class_addMethod(metaClass, @selector(asDictionary), &hr_enum ## CLASS ##_classmethod_asDictionary_implementation, "@@");    \
+};
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// This is a helper macro to be used in conjunction with metamacro_foreach_cxt when iterating property
+// names of the enum class.
+//
+// It is used to construct nameForValue dictionary of the enum class and treats the varargs of the initial
+// macro differently depending on their index. Since every even parameter is an enum constant name, it is ignored
+// and the corresponding enum constant value is taken as a dictionary key. Every odd parameter is an NSString with
+// the enum constant description and it is taken as the value corresponding to that key. If any of the NSString
+// descriptions were omitted in the HR_ENUM declaration, they becom empty strings @"".
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#define HR_ENUM_NAME_FOR_VALUE_ELEMENT(Index, Name) \
+metamacro_concat(HR_ENUM_NAME_FOR_VALUE_ELEMENT_, metamacro_is_even(Index))(Index/2, Name)
+
+
+#define HR_ENUM_NAME_FOR_VALUE_ELEMENT_1(Value, Name) \
+    @(Value) :
+
+
+#define HR_ENUM_NAME_FOR_VALUE_ELEMENT_0(Value, Name) \
+    @"" Name,
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Adds -nameForValue and +nameForValue methods to the given enum class
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#define HR_ENUM_NAME_FOR_VALUE(CLASS, ...)                                                                                          \
+@interface CLASS(NameForValue)                                                                                                      \
++ (NSDictionary *) descriptionForValue;                                                                                             \
+- (NSDictionary *) descriptionForValue;                                                                                             \
+@end                                                                                                                                \
+                                                                                                                                    \
+static id hr_enum ## CLASS ##_method_nameForValue_implementation(id SELF, SEL CMD, ...)                                             \
+{                                                                                                                                   \
+    return [[SELF class] descriptionForValue];                                                                                             \
+}                                                                                                                                   \
+                                                                                                                                    \
+static id hr_enum ## CLASS ##_classmethod_nameForValue_implementation(id SELF, SEL CMD, ...)                                        \
+{                                                                                                                                   \
+    return @{ metamacro_foreach(HR_ENUM_NAME_FOR_VALUE_ELEMENT, , __VA_ARGS__) };                                                   \
+}                                                                                                                                   \
+                                                                                                                                    \
+__attribute__((unused))                                                                                                             \
+static void hr_enum_construct_ ## CLASS ##_nameForValue(void)                                                                       \
+{                                                                                                                                   \
+    Class theClass  = objc_getClass(# CLASS);                                                                                       \
+    Class metaClass = object_getClass(theClass);                                                                                    \
+    class_addMethod(theClass,  @selector(descriptionForValue), &hr_enum ## CLASS ##_method_nameForValue_implementation,      "@@"); \
+    class_addMethod(metaClass, @selector(descriptionForValue), &hr_enum ## CLASS ##_classmethod_nameForValue_implementation, "@@"); \
 };
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
