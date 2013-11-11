@@ -9,15 +9,15 @@
 /* Begin PBXBuildFile section */
 		5DCDF4C4182F7E7D00B57504 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCDF4C3182F7E7D00B57504 /* Foundation.framework */; };
 		5DCDF4C7182F7E7D00B57504 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDF4C6182F7E7D00B57504 /* main.m */; };
-		5DCDF4E9182F7EEA00B57504 /* EXTADT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDF4D3182F7EEA00B57504 /* EXTADT.m */; };
-		5DCDF4EA182F7EEA00B57504 /* EXTConcreteProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDF4D5182F7EEA00B57504 /* EXTConcreteProtocol.m */; };
-		5DCDF4EB182F7EEA00B57504 /* EXTNil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDF4D9182F7EEA00B57504 /* EXTNil.m */; };
-		5DCDF4EC182F7EEA00B57504 /* EXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDF4DC182F7EEA00B57504 /* EXTRuntimeExtensions.m */; };
-		5DCDF4ED182F7EEA00B57504 /* EXTSafeCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDF4DE182F7EEA00B57504 /* EXTSafeCategory.m */; };
-		5DCDF4EE182F7EEA00B57504 /* EXTScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDF4E0182F7EEA00B57504 /* EXTScope.m */; };
-		5DCDF4EF182F7EEA00B57504 /* EXTSelectorChecking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDF4E2182F7EEA00B57504 /* EXTSelectorChecking.m */; };
-		5DCDF4F0182F7EEA00B57504 /* NSInvocation+EXT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDF4E6182F7EEA00B57504 /* NSInvocation+EXT.m */; };
-		5DCDF4F1182F7EEA00B57504 /* NSMethodSignature+EXT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDF4E8182F7EEA00B57504 /* NSMethodSignature+EXT.m */; };
+		5DE60195183139AE00A9F12A /* EXTADT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6017E183139AE00A9F12A /* EXTADT.m */; };
+		5DE60196183139AE00A9F12A /* EXTConcreteProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60180183139AE00A9F12A /* EXTConcreteProtocol.m */; };
+		5DE60197183139AE00A9F12A /* EXTNil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60184183139AE00A9F12A /* EXTNil.m */; };
+		5DE60198183139AE00A9F12A /* EXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60188183139AE00A9F12A /* EXTRuntimeExtensions.m */; };
+		5DE60199183139AE00A9F12A /* EXTSafeCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6018A183139AE00A9F12A /* EXTSafeCategory.m */; };
+		5DE6019A183139AE00A9F12A /* EXTScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6018C183139AE00A9F12A /* EXTScope.m */; };
+		5DE6019B183139AE00A9F12A /* EXTSelectorChecking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6018E183139AE00A9F12A /* EXTSelectorChecking.m */; };
+		5DE6019C183139AE00A9F12A /* NSInvocation+EXT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60192183139AE00A9F12A /* NSInvocation+EXT.m */; };
+		5DE6019D183139AE00A9F12A /* NSMethodSignature+EXT.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60194183139AE00A9F12A /* NSMethodSignature+EXT.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,31 +37,32 @@
 		5DCDF4C3182F7E7D00B57504 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5DCDF4C6182F7E7D00B57504 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5DCDF4C9182F7E7D00B57504 /* HRSmartEnum-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HRSmartEnum-Prefix.pch"; sourceTree = "<group>"; };
-		5DCDF4D2182F7EEA00B57504 /* EXTADT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTADT.h; sourceTree = "<group>"; };
-		5DCDF4D3182F7EEA00B57504 /* EXTADT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTADT.m; sourceTree = "<group>"; };
-		5DCDF4D4182F7EEA00B57504 /* EXTConcreteProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTConcreteProtocol.h; sourceTree = "<group>"; };
-		5DCDF4D5182F7EEA00B57504 /* EXTConcreteProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTConcreteProtocol.m; sourceTree = "<group>"; };
-		5DCDF4D6182F7EEA00B57504 /* EXTCoroutine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTCoroutine.h; sourceTree = "<group>"; };
-		5DCDF4D7182F7EEA00B57504 /* EXTKeyPathCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTKeyPathCoding.h; sourceTree = "<group>"; };
-		5DCDF4D8182F7EEA00B57504 /* EXTNil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTNil.h; sourceTree = "<group>"; };
-		5DCDF4D9182F7EEA00B57504 /* EXTNil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTNil.m; sourceTree = "<group>"; };
-		5DCDF4DA182F7EEA00B57504 /* extobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extobjc.h; sourceTree = "<group>"; };
-		5DCDF4DB182F7EEA00B57504 /* EXTRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTRuntimeExtensions.h; sourceTree = "<group>"; };
-		5DCDF4DC182F7EEA00B57504 /* EXTRuntimeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTRuntimeExtensions.m; sourceTree = "<group>"; };
-		5DCDF4DD182F7EEA00B57504 /* EXTSafeCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTSafeCategory.h; sourceTree = "<group>"; };
-		5DCDF4DE182F7EEA00B57504 /* EXTSafeCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTSafeCategory.m; sourceTree = "<group>"; };
-		5DCDF4DF182F7EEA00B57504 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
-		5DCDF4E0182F7EEA00B57504 /* EXTScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTScope.m; sourceTree = "<group>"; };
-		5DCDF4E1182F7EEA00B57504 /* EXTSelectorChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTSelectorChecking.h; sourceTree = "<group>"; };
-		5DCDF4E2182F7EEA00B57504 /* EXTSelectorChecking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTSelectorChecking.m; sourceTree = "<group>"; };
-		5DCDF4E3182F7EEA00B57504 /* EXTSynthesize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTSynthesize.h; sourceTree = "<group>"; };
-		5DCDF4E4182F7EEA00B57504 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
-		5DCDF4E5182F7EEA00B57504 /* NSInvocation+EXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+EXT.h"; sourceTree = "<group>"; };
-		5DCDF4E6182F7EEA00B57504 /* NSInvocation+EXT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+EXT.m"; sourceTree = "<group>"; };
-		5DCDF4E7182F7EEA00B57504 /* NSMethodSignature+EXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+EXT.h"; sourceTree = "<group>"; };
-		5DCDF4E8182F7EEA00B57504 /* NSMethodSignature+EXT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMethodSignature+EXT.m"; sourceTree = "<group>"; };
 		5DCDF4F2182F836300B57504 /* HRSmartEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRSmartEnum.h; sourceTree = "<group>"; };
 		5DCDF4F7182FCE7800B57504 /* metamacro_extra_foreach_cxt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = metamacro_extra_foreach_cxt.h; sourceTree = "<group>"; };
+		5DE6017D183139AE00A9F12A /* EXTADT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTADT.h; sourceTree = "<group>"; };
+		5DE6017E183139AE00A9F12A /* EXTADT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTADT.m; sourceTree = "<group>"; };
+		5DE6017F183139AE00A9F12A /* EXTConcreteProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTConcreteProtocol.h; sourceTree = "<group>"; };
+		5DE60180183139AE00A9F12A /* EXTConcreteProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTConcreteProtocol.m; sourceTree = "<group>"; };
+		5DE60181183139AE00A9F12A /* EXTCoroutine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTCoroutine.h; sourceTree = "<group>"; };
+		5DE60182183139AE00A9F12A /* EXTKeyPathCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTKeyPathCoding.h; sourceTree = "<group>"; };
+		5DE60183183139AE00A9F12A /* EXTNil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTNil.h; sourceTree = "<group>"; };
+		5DE60184183139AE00A9F12A /* EXTNil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTNil.m; sourceTree = "<group>"; };
+		5DE60185183139AE00A9F12A /* extobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extobjc.h; sourceTree = "<group>"; };
+		5DE60186183139AE00A9F12A /* extobjc_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extobjc_Prefix.pch; sourceTree = "<group>"; };
+		5DE60187183139AE00A9F12A /* EXTRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTRuntimeExtensions.h; sourceTree = "<group>"; };
+		5DE60188183139AE00A9F12A /* EXTRuntimeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTRuntimeExtensions.m; sourceTree = "<group>"; };
+		5DE60189183139AE00A9F12A /* EXTSafeCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTSafeCategory.h; sourceTree = "<group>"; };
+		5DE6018A183139AE00A9F12A /* EXTSafeCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTSafeCategory.m; sourceTree = "<group>"; };
+		5DE6018B183139AE00A9F12A /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
+		5DE6018C183139AE00A9F12A /* EXTScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTScope.m; sourceTree = "<group>"; };
+		5DE6018D183139AE00A9F12A /* EXTSelectorChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTSelectorChecking.h; sourceTree = "<group>"; };
+		5DE6018E183139AE00A9F12A /* EXTSelectorChecking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTSelectorChecking.m; sourceTree = "<group>"; };
+		5DE6018F183139AE00A9F12A /* EXTSynthesize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTSynthesize.h; sourceTree = "<group>"; };
+		5DE60190183139AE00A9F12A /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
+		5DE60191183139AE00A9F12A /* NSInvocation+EXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+EXT.h"; sourceTree = "<group>"; };
+		5DE60192183139AE00A9F12A /* NSInvocation+EXT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+EXT.m"; sourceTree = "<group>"; };
+		5DE60193183139AE00A9F12A /* NSMethodSignature+EXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+EXT.h"; sourceTree = "<group>"; };
+		5DE60194183139AE00A9F12A /* NSMethodSignature+EXT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMethodSignature+EXT.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +80,7 @@
 		5DCDF4B7182F7E7D00B57504 = {
 			isa = PBXGroup;
 			children = (
-				5DCDF4D1182F7EEA00B57504 /* extobjc */,
+				5DE6017C183139AE00A9F12A /* extobjc */,
 				5DCDF4C5182F7E7D00B57504 /* HRSmartEnum */,
 				5DCDF4C2182F7E7D00B57504 /* Frameworks */,
 				5DCDF4C1182F7E7D00B57504 /* Products */,
@@ -121,34 +122,36 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		5DCDF4D1182F7EEA00B57504 /* extobjc */ = {
+		5DE6017C183139AE00A9F12A /* extobjc */ = {
 			isa = PBXGroup;
 			children = (
-				5DCDF4D2182F7EEA00B57504 /* EXTADT.h */,
-				5DCDF4D3182F7EEA00B57504 /* EXTADT.m */,
-				5DCDF4D4182F7EEA00B57504 /* EXTConcreteProtocol.h */,
-				5DCDF4D5182F7EEA00B57504 /* EXTConcreteProtocol.m */,
-				5DCDF4D6182F7EEA00B57504 /* EXTCoroutine.h */,
-				5DCDF4D7182F7EEA00B57504 /* EXTKeyPathCoding.h */,
-				5DCDF4D8182F7EEA00B57504 /* EXTNil.h */,
-				5DCDF4D9182F7EEA00B57504 /* EXTNil.m */,
-				5DCDF4DA182F7EEA00B57504 /* extobjc.h */,
-				5DCDF4DB182F7EEA00B57504 /* EXTRuntimeExtensions.h */,
-				5DCDF4DC182F7EEA00B57504 /* EXTRuntimeExtensions.m */,
-				5DCDF4DD182F7EEA00B57504 /* EXTSafeCategory.h */,
-				5DCDF4DE182F7EEA00B57504 /* EXTSafeCategory.m */,
-				5DCDF4DF182F7EEA00B57504 /* EXTScope.h */,
-				5DCDF4E0182F7EEA00B57504 /* EXTScope.m */,
-				5DCDF4E1182F7EEA00B57504 /* EXTSelectorChecking.h */,
-				5DCDF4E2182F7EEA00B57504 /* EXTSelectorChecking.m */,
-				5DCDF4E3182F7EEA00B57504 /* EXTSynthesize.h */,
-				5DCDF4E4182F7EEA00B57504 /* metamacros.h */,
-				5DCDF4E5182F7EEA00B57504 /* NSInvocation+EXT.h */,
-				5DCDF4E6182F7EEA00B57504 /* NSInvocation+EXT.m */,
-				5DCDF4E7182F7EEA00B57504 /* NSMethodSignature+EXT.h */,
-				5DCDF4E8182F7EEA00B57504 /* NSMethodSignature+EXT.m */,
+				5DE6017D183139AE00A9F12A /* EXTADT.h */,
+				5DE6017E183139AE00A9F12A /* EXTADT.m */,
+				5DE6017F183139AE00A9F12A /* EXTConcreteProtocol.h */,
+				5DE60180183139AE00A9F12A /* EXTConcreteProtocol.m */,
+				5DE60181183139AE00A9F12A /* EXTCoroutine.h */,
+				5DE60182183139AE00A9F12A /* EXTKeyPathCoding.h */,
+				5DE60183183139AE00A9F12A /* EXTNil.h */,
+				5DE60184183139AE00A9F12A /* EXTNil.m */,
+				5DE60185183139AE00A9F12A /* extobjc.h */,
+				5DE60186183139AE00A9F12A /* extobjc_Prefix.pch */,
+				5DE60187183139AE00A9F12A /* EXTRuntimeExtensions.h */,
+				5DE60188183139AE00A9F12A /* EXTRuntimeExtensions.m */,
+				5DE60189183139AE00A9F12A /* EXTSafeCategory.h */,
+				5DE6018A183139AE00A9F12A /* EXTSafeCategory.m */,
+				5DE6018B183139AE00A9F12A /* EXTScope.h */,
+				5DE6018C183139AE00A9F12A /* EXTScope.m */,
+				5DE6018D183139AE00A9F12A /* EXTSelectorChecking.h */,
+				5DE6018E183139AE00A9F12A /* EXTSelectorChecking.m */,
+				5DE6018F183139AE00A9F12A /* EXTSynthesize.h */,
+				5DE60190183139AE00A9F12A /* metamacros.h */,
+				5DE60191183139AE00A9F12A /* NSInvocation+EXT.h */,
+				5DE60192183139AE00A9F12A /* NSInvocation+EXT.m */,
+				5DE60193183139AE00A9F12A /* NSMethodSignature+EXT.h */,
+				5DE60194183139AE00A9F12A /* NSMethodSignature+EXT.m */,
 			);
-			path = extobjc;
+			name = extobjc;
+			path = extobjc/extobjc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,16 +205,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DCDF4F1182F7EEA00B57504 /* NSMethodSignature+EXT.m in Sources */,
-				5DCDF4ED182F7EEA00B57504 /* EXTSafeCategory.m in Sources */,
+				5DE6019D183139AE00A9F12A /* NSMethodSignature+EXT.m in Sources */,
+				5DE60199183139AE00A9F12A /* EXTSafeCategory.m in Sources */,
 				5DCDF4C7182F7E7D00B57504 /* main.m in Sources */,
-				5DCDF4EC182F7EEA00B57504 /* EXTRuntimeExtensions.m in Sources */,
-				5DCDF4EE182F7EEA00B57504 /* EXTScope.m in Sources */,
-				5DCDF4E9182F7EEA00B57504 /* EXTADT.m in Sources */,
-				5DCDF4EA182F7EEA00B57504 /* EXTConcreteProtocol.m in Sources */,
-				5DCDF4EF182F7EEA00B57504 /* EXTSelectorChecking.m in Sources */,
-				5DCDF4EB182F7EEA00B57504 /* EXTNil.m in Sources */,
-				5DCDF4F0182F7EEA00B57504 /* NSInvocation+EXT.m in Sources */,
+				5DE60198183139AE00A9F12A /* EXTRuntimeExtensions.m in Sources */,
+				5DE6019A183139AE00A9F12A /* EXTScope.m in Sources */,
+				5DE60195183139AE00A9F12A /* EXTADT.m in Sources */,
+				5DE60196183139AE00A9F12A /* EXTConcreteProtocol.m in Sources */,
+				5DE6019B183139AE00A9F12A /* EXTSelectorChecking.m in Sources */,
+				5DE60197183139AE00A9F12A /* EXTNil.m in Sources */,
+				5DE6019C183139AE00A9F12A /* NSInvocation+EXT.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

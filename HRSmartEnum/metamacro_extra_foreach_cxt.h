@@ -7,6 +7,13 @@
 //  Released under the MIT license.
 //
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Macros declared in this file were generated programmatically to expand the limits of the macros
+// provided in metamacros.h from extobjc. These raise the limit of the arguments for some of the macros
+// to 100 instead of 20. This was necessary since HRSmartEnum utilizes extra optional arguments which
+// take a lot of 'argument space'.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #ifndef HRSmartEnum_metamacro_extra_foreach_cxt_h
 #define HRSmartEnum_metamacro_extra_foreach_cxt_h
 

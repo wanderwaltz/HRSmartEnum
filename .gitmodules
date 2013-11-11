@@ -1,0 +1,3 @@
+[submodule "extobjc"]
+	path = extobjc
+	url = https://github.com/jspahrsummers/libextobjc.git
