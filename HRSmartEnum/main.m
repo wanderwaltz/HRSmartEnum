@@ -10,49 +10,50 @@
 #import <Foundation/Foundation.h>
 #import "HRSmartEnum.h"
 
+
 // Using HR_ENUM macro you declare both a plain C enum with the given name
 // and a class of the same name which allows more high-level operations with
 // the enum values (such as enumeration in a for-in loop for example).
 //
-// Enum is declared with NSInteger type. Current limitations allow only
-// enums without explicit values (i.e. the values are assigned automatically,
-// starting from 0 and so forth).
+// Enum is declared with NSInteger type.
 @HR_ENUM(MahBoi, // First parameter is the name of the enum
          
-         // The rest of the parameters come in pairs - one is the enum constant
-         // name which is no different from the usual enum declarations.
+         // The rest of the parameters come in threes - each three consecutive
+         // parameters correspond to a single enum value being described.
          //
-         // The second is the string name for this constant which can be displayed
-         // in the user interface for example.
+         // As a limitation of the preprocessor-based implementation, you have to
+         // include all three parameters for each of the enum values, so if you
+         // choose to skip one of the enum value properties, you still have to
+         // have an extra comma there (see below)
          //
-         // String name may be omitted, but in order for the macro to expand properly,
-         // an extra comma (,) should be then left after the enum constant name.
-         Value0, @"String value 1",
-         Value1, @"String value 2",
-         Value2,,
-         Value3,,
-         Value4,,
-         Value5, @"And here we have another user-friendly string for example",
-         Value6,,
-         Value7,,
-         Value8,,
-         Value9,,
-         Value10,,
-         Value11,,
-         Value12,,
-         Value13,,
-         Value14,,
-         Value15,,
-         Value16,,
-         Value17,,
-         Value18,,
-         Value19,,
-         Value20,,
-         Value21,,
-         Value22,,
-         Value23,,
-         Value24,,
-         Value25,
+         // These parameters are: (constant name, value, string description)
+         // See HRSmartEnum.h for more detailed explanation and syntax info.
+         Value0,, @"String value 1",
+         Value1,, @"String value 2",
+         Value3, 3, @"This value is equal to 3 out of order",
+         Value4,,,
+         Value5,, @"And here we have another user-friendly string for example",
+         Value6,, @"Next enum constants do not have string descriptions and explicit values",
+         Value7,,,   // Extra commas here and below are due to the skipped optional parameters;
+         Value8,,,   // i.e. the values are not provided, but we still have to formally have the
+         Value9,,,   // expected number of arguments for the macros to expand properly.
+         Value10,,,  // An inconveninence indeed, but hopefully a minor one.
+         Value11,,,
+         Value12,,,
+         Value13,,,
+         Value14,,,
+         Value15,,,
+         Value16,,,
+         Value17,,,
+         Value18,,,
+         Value19,,,
+         Value20,,,
+         Value21,,,
+         Value22,,,
+         Value23,,,
+         Value24,,,
+         Value25,,,
+         ValueBiggerThanOthers, 999, @"This value is bigger than others for no apparent reason"
          // No more than 50 different values can be handled here,
          // this is a limitation of metamacro_foreach and similar macros
          // from the extobjc library.
@@ -88,7 +89,7 @@ int main(int argc, const char * argv[])
         // differentiate it from the enum class.
         //
         // HR_ENUM declares enum with NSInteger type.
-        MahBoi_t scalar = MahBoiValue2;
+        MahBoi_t scalar = MahBoiValue3;
 
         // You can use scalar enum values in switch statements as usual.
         //
@@ -103,17 +104,17 @@ int main(int argc, const char * argv[])
         // The constants have values starting from 0 and so forth
         NSLog(@"MahBoiValue0 = %ld", MahBoiValue0);
         NSLog(@"MahBoiValue1 = %ld", MahBoiValue1);
-        NSLog(@"MahBoiValue2 = %ld", MahBoiValue2);
+        NSLog(@"MahBoiValue3 = %ld", MahBoiValue3);
         
         // They can be accessed as class methods of the enum class
         NSLog(@"MahBoi.Value0 = %ld", MahBoi.Value0);
         NSLog(@"MahBoi.Value1 = %ld", MahBoi.Value1);
-        NSLog(@"MahBoi.Value2 = %ld", MahBoi.Value2);
+        NSLog(@"MahBoi.Value3 = %ld", MahBoi.Value3);
         
         // And also as readonly properties of the enum class instance
         NSLog(@"boi.Value0 = %ld", boi.Value0);
         NSLog(@"boi.Value1 = %ld", boi.Value1);
-        NSLog(@"boi.Value2 = %ld", boi.Value2);
+        NSLog(@"boi.Value3 = %ld", boi.Value3);
         
         // All key-value pairs are accessible as a single dictionary
         // if you want.
@@ -122,7 +123,7 @@ int main(int argc, const char * argv[])
         
         // Also convenience methods are provided to get all keys as an NSArray
         NSLog(@"MahBoi.allKeys = %@", MahBoi.allKeys);
-        NSLog(@"boi.allKeys     = %@", boi.allKeys);
+        NSLog(@"boi.allKeys = %@", boi.allKeys);
         
         // And all values too!
         NSLog(@"MahBoi.allValues = %@", MahBoi.allValues);
@@ -137,4 +138,3 @@ int main(int argc, const char * argv[])
     
     return 0;
 }
-
